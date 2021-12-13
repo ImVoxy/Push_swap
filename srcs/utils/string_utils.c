@@ -6,7 +6,7 @@
 /*   By: alpascal <alpascal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 17:05:47 by alpascal          #+#    #+#             */
-/*   Updated: 2021/12/13 01:41:52 by alpascal         ###   ########.fr       */
+/*   Updated: 2021/12/13 18:51:26 by alpascal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	count_args(char **args, int i)
 		{
 			while (args[i][j] == ' ' || args[i][j] == '\t')
 				j++;
-			if (args[i][j] && !(ft_isdigit(args[i][j])) && !(args[i][j] == '-'
-				&& ft_isdigit(args[i][j + 1])))
-				return (0);
-			else if (args[i][j] == '-')
+			if (args[i][j] && !(ft_isdigit(args[i][j])) && !((args[i][j] == '-'
+				|| args[i][j] == '+') && ft_isdigit(args[i][j + 1])))
+				return (-1);
+			else if (args[i][j] == '-' || args[i][j] == '+')
 				j++;
 			if (args[i][j])
 				count++;
@@ -82,8 +82,8 @@ int	check_args2(char *args, int **tab, int *i)
 	{
 		while (args[j] && (args[j] == ' ' || args[j] == '\t'))
 			j++;
-		if (args[j] && !(ft_isdigit(args[j])) && !(args[j] == '-'
-				&& (ft_isdigit(args[j + 1]))))
+		if (args[j] && !(ft_isdigit(args[j])) && !((args[j] == '-'
+					|| args[j] == '+') && (ft_isdigit(args[j + 1]))))
 			return (0);
 		if (!check_int(&(args[j])))
 			return (0);
@@ -92,7 +92,7 @@ int	check_args2(char *args, int **tab, int *i)
 			tab[0][*i] = ft_atoi(&(args[j]));
 			*i += 1;
 		}
-		if (args[j] == '-')
+		if (args[j] == '-' || args[j] == '+')
 			j++;
 		while (ft_isdigit(args[j]))
 			j++;
@@ -113,7 +113,7 @@ int	*check_args(char **args)
 	tab = init_tab(args);
 	while (args[i])
 	{
-		if (!check_args2(args[i], &tab, &j))
+		if (count_args(args, 0) == -1 || !check_args2(args[i], &tab, &j))
 			return (exit_checker(tab, 0));
 		i++;
 	}
