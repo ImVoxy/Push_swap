@@ -6,7 +6,7 @@
 /*   By: alpascal <alpascal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:43:07 by alpascal          #+#    #+#             */
-/*   Updated: 2021/11/08 14:50:29 by alpascal         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:27:05 by alpascal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	check_int(char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
+	{
 		nb = nb * 10 + (str[i++] - 48);
-	if ((minus == 1 && nb > 2147483648) || (minus == 0 && nb > 2147483647))
-		return (0);
+		if ((minus == 1 && nb > 2147483648) || (minus == 0 && nb > 2147483647))
+			return (0);
+	}
 	return (1);
 }

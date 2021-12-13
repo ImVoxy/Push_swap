@@ -6,7 +6,7 @@
 /*   By: alpascal <alpascal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:08:06 by alpascal          #+#    #+#             */
-/*   Updated: 2021/12/13 01:42:06 by alpascal         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:30:10 by alpascal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,23 @@ int	loop_solver(t_head *head, t_config *config)
 	return (0);
 }
 
+int	ft_init_test(int *tab, int max)
+{
+	int	i;
+	int	inter;
+
+	i = 0;
+	inter = tab[i];
+	while (i < max)
+	{
+		if (tab[i] < inter)
+			return (1);
+		inter = tab[i];
+		i++;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_head		*head;
@@ -64,12 +81,10 @@ int	main(int argc, char **argv)
 	{
 		head = ft_calloc(1, sizeof(t_head));
 		config = ft_calloc(1, sizeof(t_config));
-		if (count_args(&(argv[1]), 0) > 1)
-		{
-			init_stack(count_args(&(argv[1]), 0), tab, &head);
-			parse_stack(head->a, config);
+		init_stack(count_args(&(argv[1]), 0), tab, &head);
+		parse_stack(head->a, config);
+		if (count_args(&(argv[1]), 0) > 1 && ft_init_test(tab, config->count))
 			loop_solver(head, config);
-		}
 		ft_cleanup(head, config, tab);
 	}
 	else
