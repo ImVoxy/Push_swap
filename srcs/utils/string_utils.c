@@ -87,8 +87,11 @@ int	check_args2(char *args, int **tab, int *i)
 			return (0);
 		if (!check_int(&(args[j])))
 			return (0);
-		tab[0][*i] = ft_atoi(&(args[j]));
-		*i += 1;
+		if (args[j])
+		{
+			tab[0][*i] = ft_atoi(&(args[j]));
+			*i += 1;
+		}
 		if (args[j] == '-')
 			j++;
 		while (ft_isdigit(args[j]))
