@@ -6,7 +6,7 @@
 #    By: alpascal <alpascal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 16:34:58 by alpascal          #+#    #+#              #
-#    Updated: 2021/12/13 01:40:03 by alpascal         ###   ########.fr        #
+#    Updated: 2021/12/15 00:02:47 by alpascal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ INCLUDES 		= -Iincludes -Ilibft
 PUSHSWAP_NAME	= push_swap/push_swap.c \
 					push_swap/short_sort.c \
 					push_swap/short_sort2.c \
-					push_swap/insert_sort.c \
 					push_swap/quick_sort.c \
 					push_swap/quick_sort2.c \
 					utils/stack_utils.c \
